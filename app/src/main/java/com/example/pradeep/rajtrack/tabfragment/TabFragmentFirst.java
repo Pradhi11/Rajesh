@@ -2,15 +2,19 @@ package com.example.pradeep.rajtrack.tabfragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.pradeep.rajtrack.JsonRequestActivity;
 import com.example.pradeep.rajtrack.R;
+import com.example.pradeep.rajtrack.VolleyMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +24,7 @@ import com.example.pradeep.rajtrack.R;
  * Use the {@link TabFragmentFirst#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TabFragmentFirst extends Fragment {
+public class TabFragmentFirst extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,6 +33,9 @@ public class TabFragmentFirst extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button btnPay;
+    View view;
 
     private OnFragmentInteractionListener mListener;
 
@@ -69,8 +76,11 @@ public class TabFragmentFirst extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Toast.makeText(getActivity(),"MAKE Text! first",Toast.LENGTH_SHORT).show();
-        return inflater.inflate(R.layout.fragment_tab_fragment_first, container, false);
+
+        view=inflater.inflate(R.layout.fragment_tab_fragment_first, container, false);
+        btnPay= (Button) view.findViewById(R.id.pay);
+        btnPay.setOnClickListener(this);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -96,6 +106,13 @@ public class TabFragmentFirst extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        Toast.makeText(getActivity(),"MAKE Text! first",Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getActivity(), JsonRequestActivity.class));
     }
 
     /**

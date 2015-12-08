@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.pradeep.rajtrack.R;
@@ -19,7 +20,7 @@ import com.example.pradeep.rajtrack.R;
  * Use the {@link TabFragmentSecond#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TabFragmentSecond extends Fragment {
+public class TabFragmentSecond extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,6 +29,8 @@ public class TabFragmentSecond extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    Button timeTable;
+    View view;
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,14 +65,17 @@ public class TabFragmentSecond extends Fragment {
         }
 
 
+
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Toast.makeText(getActivity(), "MAKE Text two!", Toast.LENGTH_SHORT).show();
-        return inflater.inflate(R.layout.fragment_tab_fragment_second, container, false);
+
+        view=inflater.inflate(R.layout.fragment_tab_fragment_second, container, false);
+        timeTable= (Button) view.findViewById(R.id.time_table);
+        timeTable.setOnClickListener(this);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -95,6 +101,13 @@ public class TabFragmentSecond extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        Toast.makeText(getActivity(), "MAKE Text two!", Toast.LENGTH_SHORT).show();
+
     }
 
     /**

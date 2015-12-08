@@ -48,9 +48,9 @@ public class JsonRequestActivity extends Activity implements OnClickListener {
 		pDialog = new ProgressDialog(this);
 		pDialog.setMessage("Loading...");
 		pDialog.setCancelable(false);
-
-		btnJsonObj.setOnClickListener(this);
-		btnJsonArray.setOnClickListener(this);
+		makeJsonObjReq();
+		//btnJsonObj.setOnClickListener(this);
+		//btnJsonArray.setOnClickListener(this);
 	}
 
 	private void showProgressDialog() {
