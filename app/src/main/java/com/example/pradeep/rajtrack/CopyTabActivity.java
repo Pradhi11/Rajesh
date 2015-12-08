@@ -83,4 +83,4 @@ public class CopyTabActivity extends AppCompatActivity implements TabFragmentFir
             return mFragmentTitleList.get(position);
         }
     }
-}
+}      //1200 1500 10000 7000 1000     33500  16500  1200  4000 3000  1000
