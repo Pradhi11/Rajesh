@@ -21,4 +21,5 @@
     <string name="hello_blank_fragmenttwo">Hello blank fragment two</string>
     <string name="hello_blank_fragmentthree">Hello blank fragment three</string>
     <string name="title_activity_copy_tab">CopyTabActivity</string>
+    <string name="title_activity_populate_list_view">PopulateListView</string>
 </resources>

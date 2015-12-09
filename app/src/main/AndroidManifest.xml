@@ -37,10 +37,16 @@
             android:label="@string/title_activity_tab" >
         </activity>
         -->
-        <!--<activity
+        <!--
+        <activity
             android:name=".CopyTabActivity"
             android:label="@string/title_activity_copy_tab" >
-        </activity>-->
+        </activity>
+        -->
+        <activity
+            android:name=".PopulateListView"
+            android:label="@string/title_activity_populate_list_view" >
+        </activity>
     </application>
 
 </manifest>
