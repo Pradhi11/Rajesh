@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/bg_detail"
+    android:padding="20dp">
 
     <Button
         android:id="@+id/btnImageReq"
@@ -36,13 +38,25 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="Response: " />
+        android:text="Response: "
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/msgResponse"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="" />
+        android:text=""
+        android:visibility="gone"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/populate"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:dividerHeight="5dp">
+
+    </ListView>
 
 </LinearLayout>

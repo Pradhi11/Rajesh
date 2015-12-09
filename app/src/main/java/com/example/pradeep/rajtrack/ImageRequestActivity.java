@@ -5,9 +5,12 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
@@ -21,16 +24,18 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import com.example.pradeep.rajtrack.utils.Parser;
 import com.example.pradeep.rajtrack.AppController;
 import com.example.pradeep.rajtrack.utils.Const;
+import com.example.pradeep.rajtrack.utils.ResultAdapter;
 import com.example.pradeep.rajtrack.utils.UseFullMethods;
 
 import org.json.JSONObject;
 
-public class ImageRequestActivity extends Activity {
+public class ImageRequestActivity extends Activity implements AdapterView.OnItemClickListener {
 
 	private static final String TAG = ImageRequestActivity.class
 			.getSimpleName();
@@ -42,6 +47,9 @@ public class ImageRequestActivity extends Activity {
 	private TextView msgResponse;
 	String usn;
 	UseFullMethods instance;
+	ResultAdapter resultAdapter;
+	ListView listView;
+	ArrayList<HashMap<String,String>> results;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +59,7 @@ public class ImageRequestActivity extends Activity {
 		usn=getIntent().getStringExtra("usn");
 		Log.d("=====", usn);
 		instance=new UseFullMethods();
-
+        listView= (ListView) findViewById(R.id.populate);
 		btnImageReq = (Button) findViewById(R.id.btnImageReq);
 		imgNetWorkView = (NetworkImageView) findViewById(R.id.imgNetwork);
 		imageView = (ImageView) findViewById(R.id.imgView);
@@ -67,6 +75,7 @@ public class ImageRequestActivity extends Activity {
 				makeImageRequest();
 			}
 		});*/
+		listView.setOnItemClickListener(this);
 		makeJsonObjReq();
 	}
 
@@ -119,7 +128,20 @@ public class ImageRequestActivity extends Activity {
 			@Override
 			public void onResponse(JSONObject response) {
 				Log.d(TAG, response.toString());
-				msgResponse.setText(response.toString());
+				Parser parse=new Parser(ImageRequestActivity.this,response);
+				 results=parse.getResult();
+
+				if(results!=null)
+				{
+					resultAdapter=new ResultAdapter(ImageRequestActivity.this,results);
+					listView.setAdapter(resultAdapter);
+				}
+				else
+				{
+					Toast.makeText(ImageRequestActivity.this,"result null guru",Toast.LENGTH_LONG).show();
+				}
+
+				msgResponse.setText(parse.getResult().toString());
 				hideProgressDialog();
 			}
 		}, new Response.ErrorListener() {
@@ -168,5 +190,19 @@ public class ImageRequestActivity extends Activity {
 	private void hideProgressDialog() {
 		if (pDialog.isShowing())
 			pDialog.hide();
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+		HashMap<String,String> resultObject = results.get(position);
+
+		String s=resultObject.get("NAME");
+		String s1=resultObject.get("EXTERNAL");
+		String s2=resultObject.get("TOTAL");
+
+		Log.d("##",s+" : "+s1+": "+": "+s2);
+
+
 	}
 }
