@@ -2,6 +2,7 @@ package com.example.pradeep.rajtrack;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,13 +26,17 @@ import java.util.Map;
 
 import com.example.pradeep.rajtrack.AppController;
 import com.example.pradeep.rajtrack.utils.Const;
+import com.example.pradeep.rajtrack.utils.UseFullMethods;
 
 public class JsonRequestActivity extends Activity implements OnClickListener {
 
 	private String TAG = JsonRequestActivity.class.getSimpleName();
-	private Button btnJsonObj, btnJsonArray;
+	//private Button btnJsonObj, btnJsonArray;
 	private TextView msgResponse;
 	private ProgressDialog pDialog;
+	Intent i;
+	String usn;
+	UseFullMethods instance;
 
 	// These tags will be used to cancel the requests
 	private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
@@ -41,8 +46,13 @@ public class JsonRequestActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_json);
 
-		btnJsonObj = (Button) findViewById(R.id.btnJsonObj);
-		btnJsonArray = (Button) findViewById(R.id.btnJsonArray);
+
+		 usn=getIntent().getStringExtra("usn");
+		Log.d("=====",usn);
+		instance=new UseFullMethods();
+
+		//btnJsonObj = (Button) findViewById(R.id.btnJsonObj);
+		//btnJsonArray = (Button) findViewById(R.id.btnJsonArray);
 		msgResponse = (TextView) findViewById(R.id.msgResponse);
 
 		pDialog = new ProgressDialog(this);
@@ -68,7 +78,7 @@ public class JsonRequestActivity extends Activity implements OnClickListener {
 	 * */
 	private void makeJsonObjReq() {
 		showProgressDialog();
-		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,Const.URL_JSON_OBJECT, null,new Response.Listener<JSONObject>() {
+		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,instance.conCat(usn,Const.URL_JSON_OBJECT), null,new Response.Listener<JSONObject>() {
 
 					@Override
 					public void onResponse(JSONObject response) {
@@ -117,30 +127,7 @@ public class JsonRequestActivity extends Activity implements OnClickListener {
 	/**
 	 * Making json array request
 	 * */
-	private void makeJsonArryReq() {
-		showProgressDialog();
-		JsonArrayRequest req = new JsonArrayRequest(Const.URL_JSON_ARRAY,new Response.Listener<JSONArray>() {
-					@Override
-					public void onResponse(JSONArray response) {
-						Log.d(TAG, response.toString());
-						msgResponse.setText(response.toString());
-						hideProgressDialog();
-					}
-				}, new Response.ErrorListener() {
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						VolleyLog.d(TAG, "Error: " + error.getMessage());
-						hideProgressDialog();
-					}
-				});
 
-		// Adding request to request queue
-		AppController.getInstance().addToRequestQueue(req,
-				tag_json_arry);
-
-		// Cancelling request
-		// ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
-	}
 
 	@Override
 	public void onClick(View v) {
@@ -149,10 +136,12 @@ public class JsonRequestActivity extends Activity implements OnClickListener {
 			makeJsonObjReq();
 			break;
 		case R.id.btnJsonArray:
-			makeJsonArryReq();
+			//makeJsonArryReq();
 			break;
 		}
 
 	}
+
+
 
 }

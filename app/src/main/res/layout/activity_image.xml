@@ -8,7 +8,8 @@
         android:id="@+id/btnImageReq"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_image" />
+        android:text="@string/btn_image"
+        android:visibility="gone"/>
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/imgNetwork"
@@ -16,7 +17,8 @@
         android:layout_height="150dp"
         android:layout_margin="10dp"
         android:layout_marginTop="50dp"
-        android:scaleType="fitXY" >
+        android:scaleType="fitXY"
+        android:visibility="gone">
     </com.android.volley.toolbox.NetworkImageView>
 
     <ImageView
@@ -25,7 +27,22 @@
         android:layout_height="150dp"
         android:layout_margin="10dp"
         android:layout_marginTop="50dp"
-        android:scaleType="fitCenter" >
+        android:scaleType="fitCenter"
+        android:visibility="gone">
     </ImageView>
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Response: " />
+
+    <TextView
+        android:id="@+id/msgResponse"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="" />
 
 </LinearLayout>

@@ -33,6 +33,7 @@ public class TabFragmentFirst extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String usn="15bwsb3024";
 
     private Button btnPay;
     View view;
@@ -112,7 +113,10 @@ public class TabFragmentFirst extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         Toast.makeText(getActivity(),"MAKE Text! first",Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getActivity(), JsonRequestActivity.class));
+        Intent i=new Intent(getActivity(), JsonRequestActivity.class);
+        i.putExtra("usn", usn);
+        startActivity(i);
+        //startActivity(new Intent(getActivity(), JsonRequestActivity.class));
     }
 
     /**

@@ -2,6 +2,7 @@ package com.example.pradeep.rajtrack.tabfragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.pradeep.rajtrack.ImageRequestActivity;
+import com.example.pradeep.rajtrack.JsonRequestActivity;
 import com.example.pradeep.rajtrack.R;
+import com.example.pradeep.rajtrack.StringRequestActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +34,7 @@ public class TabFragmentThree extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private String usn="15bwsb3024";
     private Button btnResult;
     View view;
 
@@ -110,6 +114,10 @@ public class TabFragmentThree extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         Toast.makeText(getActivity(), "MAKE Text! three", Toast.LENGTH_SHORT).show();
+        Intent i=new Intent(getActivity(), ImageRequestActivity.class);
+        i.putExtra("usn", usn);
+        startActivity(i);
+        //startActivity(new Intent(getActivity(), StringRequestActivity.class));
     }
 
     /**

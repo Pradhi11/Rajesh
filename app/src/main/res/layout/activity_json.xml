@@ -13,13 +13,15 @@
         android:id="@+id/btnJsonObj"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_json_obj_request" />
+        android:text="@string/btn_json_obj_request"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btnJsonArray"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_json_array_request" />
+        android:text="@string/btn_json_array_request"
+        android:visibility="gone"/>
 
     <TextView
         android:layout_width="fill_parent"
