@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request.Method;
@@ -18,10 +20,14 @@ import com.android.volley.toolbox.StringRequest;
 
 import com.example.pradeep.rajtrack.AppController;
 import com.example.pradeep.rajtrack.utils.Const;
+import com.example.pradeep.rajtrack.utils.Parser;
+import com.example.pradeep.rajtrack.utils.ResultAdapter;
+import com.example.pradeep.rajtrack.utils.TimeTableAdapter;
 import com.example.pradeep.rajtrack.utils.UseFullMethods;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,10 +41,11 @@ public class StringRequestActivity extends Activity {
 	// This tag will be used to cancel the request
 	private String tag_string_req = "string_req";
 	private String tag_json_obj = "jobj_req";
-
-
+	TimeTableAdapter timeTableAdapter;
+	ListView listView;
 	String usn;
 	UseFullMethods instance;
+	ArrayList<HashMap<String,String>> results;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +55,7 @@ public class StringRequestActivity extends Activity {
 		usn=getIntent().getStringExtra("usn");
 		Log.d("=====", usn);
 		instance=new UseFullMethods();
-
+		listView= (ListView) findViewById(R.id.populate);
 		//btnStringReq = (Button) findViewById(R.id.btnStringReq);
 		msgResponse = (TextView) findViewById(R.id.msgResponse);
 
@@ -91,6 +98,21 @@ public class StringRequestActivity extends Activity {
 			@Override
 			public void onResponse(JSONObject response) {
 				Log.d(TAG, response.toString());
+
+
+				Parser parse=new Parser(StringRequestActivity.this,response);
+				results=parse.getTimeTable();
+
+				if(results!=null)
+				{
+					timeTableAdapter=new TimeTableAdapter(StringRequestActivity.this,results);
+					listView.setAdapter(timeTableAdapter);
+				}
+				else
+				{
+					Toast.makeText(StringRequestActivity.this, "result null guru", Toast.LENGTH_LONG).show();
+				}
+
 				msgResponse.setText(response.toString());
 				hideProgressDialog();
 			}
