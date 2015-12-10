@@ -47,6 +47,10 @@
             android:name=".PopulateListView"
             android:label="@string/title_activity_populate_list_view" >
         </activity>
+        <activity
+            android:name=".DisplayResultDetails"
+            android:label="@string/title_activity_display_result_details" >
+        </activity>
     </application>
 
 </manifest>

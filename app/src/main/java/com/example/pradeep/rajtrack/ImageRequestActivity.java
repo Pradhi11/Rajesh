@@ -2,6 +2,7 @@ package com.example.pradeep.rajtrack;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -197,12 +198,35 @@ public class ImageRequestActivity extends Activity implements AdapterView.OnItem
 
 		HashMap<String,String> resultObject = results.get(position);
 
-		String s=resultObject.get("NAME");
-		String s1=resultObject.get("EXTERNAL");
-		String s2=resultObject.get("TOTAL");
+		String lSub=resultObject.get("SUBJECT");
+		String lUsn=resultObject.get("USN");
+		String lName=resultObject.get("NAME");
 
-		Log.d("##",s+" : "+s1+": "+": "+s2);
+		String lBranch=resultObject.get("BRANCH");
+		String lSubjectCode=resultObject.get("SUBJECT_CODE");
+		String lExternal=resultObject.get("EXTERNAL");
+
+		String linternal=resultObject.get("INTERNAL");
+		String ltotal=resultObject.get("TOTAL");
+		String lResult=resultObject.get("RESULT");
+
+		String lSem=resultObject.get("SEM");
+
+		Intent intent=new Intent(ImageRequestActivity.this,DisplayResultDetails.class);
+		intent.putExtra("lSub",lSub);
+		intent.putExtra("lUsn",lUsn);
+		intent.putExtra("lName",lName);
+		intent.putExtra("lBranch",lBranch);
+		intent.putExtra("lSubjectCode",lSubjectCode);
+		intent.putExtra("lExternal",lExternal);
+		intent.putExtra("linternal",linternal);
+		intent.putExtra("ltotal",ltotal);
+		intent.putExtra("lResult",lResult);
+		intent.putExtra("lSem",lSem);
 
 
+
+
+       startActivity(intent);
 	}
 }
