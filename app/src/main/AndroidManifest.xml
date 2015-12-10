@@ -51,6 +51,10 @@
             android:name=".DisplayResultDetails"
             android:label="@string/title_activity_display_result_details" >
         </activity>
+        <activity
+            android:name=".DisplayTimeTableActivity"
+            android:label="@string/title_activity_display_time_table" >
+        </activity>
     </application>
 
 </manifest>

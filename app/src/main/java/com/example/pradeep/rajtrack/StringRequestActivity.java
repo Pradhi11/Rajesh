@@ -2,9 +2,11 @@ package com.example.pradeep.rajtrack;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StringRequestActivity extends Activity {
+public class StringRequestActivity extends Activity implements AdapterView.OnItemClickListener{
 
 	private String TAG = StringRequestActivity.class.getSimpleName();
 	//private Button btnStringReq;
@@ -71,6 +73,7 @@ public class StringRequestActivity extends Activity {
 			}
 		});*/
 		makeJsonObjReq();
+		listView.setOnItemClickListener(this);
 	}
 
 	private void showProgressDialog() {
@@ -152,5 +155,29 @@ public class StringRequestActivity extends Activity {
 
 		// Cancelling request
 		// ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+		Toast.makeText(StringRequestActivity.this,"working",Toast.LENGTH_LONG).show();
+		HashMap<String,String> TimeTableObject = results.get(position);
+
+		String lSub=TimeTableObject.get("lsub");
+		String lExamDate=TimeTableObject.get("lexamDate");
+		String lExamTime=TimeTableObject.get("lexamTime");
+
+		String lSubCode=TimeTableObject.get("lsubCode");
+		String lBranch=TimeTableObject.get("lBranch");
+		String lSem=TimeTableObject.get("lSem");
+
+		Intent displayIntent=new Intent(StringRequestActivity.this,DisplayTimeTableActivity.class);
+		displayIntent.putExtra("lSub",lSub);
+		displayIntent.putExtra("lExamDate",lExamDate);
+		displayIntent.putExtra("lExamTime",lExamTime);
+		displayIntent.putExtra("lSubCode",lSubCode);
+		displayIntent.putExtra("lBranch",lBranch);
+		displayIntent.putExtra("lSem",lSem);
+		startActivity(displayIntent);
 	}
 }

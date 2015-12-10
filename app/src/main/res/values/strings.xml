@@ -23,4 +23,5 @@
     <string name="title_activity_copy_tab">CopyTabActivity</string>
     <string name="title_activity_populate_list_view">PopulateListView</string>
     <string name="title_activity_display_result_details">DisplayResultDetails</string>
+    <string name="title_activity_display_time_table">DisplayTimeTableActivity</string>
 </resources>
