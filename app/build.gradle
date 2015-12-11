@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.pradeep.rajtrack"
-        minSdkVersion 9
+        minSdkVersion 10
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -24,4 +24,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
     compile 'com.android.support:design:23.1.1'
+    compile 'com.paypal.sdk:paypal-android-sdk:2.12.3'
 }

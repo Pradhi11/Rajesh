@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.pradeep.rajtrack.JsonRequestActivity;
 import com.example.pradeep.rajtrack.R;
+import com.example.pradeep.rajtrack.SvaPaymentActivity;
 import com.example.pradeep.rajtrack.VolleyMainActivity;
 
 /**
@@ -112,11 +113,10 @@ public class TabFragmentFirst extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        Toast.makeText(getActivity(),"MAKE Text! first",Toast.LENGTH_SHORT).show();
-        Intent i=new Intent(getActivity(), JsonRequestActivity.class);
-        i.putExtra("usn", usn);
-        startActivity(i);
-        //startActivity(new Intent(getActivity(), JsonRequestActivity.class));
+        Toast.makeText(getActivity(),"MAKE change",Toast.LENGTH_SHORT).show();
+        Intent i=new Intent(getActivity(), SvaPaymentActivity.class);
+         startActivity(i);
+
     }
 
     /**

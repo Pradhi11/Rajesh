@@ -55,6 +55,10 @@
             android:name=".DisplayTimeTableActivity"
             android:label="@string/title_activity_display_time_table" >
         </activity>
+        <activity
+            android:name=".SvaPaymentActivity"
+            android:label="@string/title_activity_payment" >
+        </activity>
     </application>
 
 </manifest>
