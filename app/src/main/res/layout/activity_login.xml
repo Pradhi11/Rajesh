@@ -4,13 +4,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#4644aa">
+    android:background="@drawable/bg_detail">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:background="#3FFF"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" 
+        />
 
     <com.github.florent37.materialtextfield.MaterialTextField
         android:layout_width="300dp"
@@ -19,7 +20,7 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginTop="20dp"
-
+        app:mtf_animationDuration="1000"
         app:mtf_image="@drawable/ic_mail_black_24dp"
         >
 
@@ -33,21 +34,25 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#333"
+            android:textColor="@color/text_edit"
             android:hint="Number"
-            android:textColorHint="#666"
+            android:textColorHint="@color/text_edit"
             android:textSize="10sp"
-            android:id="@+id/input_login"/>
+            android:id="@+id/input_login"
+            />
 
     </com.github.florent37.materialtextfield.MaterialTextField>
 
     <Button android:id="@+id/btn_login"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOGIN"
-        android:background="@color/colorPrimary_btn"
-        android:layout_marginTop="100dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="200dp"
         android:textColor="@android:color/white"
+       android:layout_gravity="center"
+
+
         />
 
 </LinearLayout>
