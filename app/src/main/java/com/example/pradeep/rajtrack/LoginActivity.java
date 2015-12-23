@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -34,24 +35,34 @@ public class LoginActivity extends AppCompatActivity {
     private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
     UseFullMethods instance;
     String mUsn;
+    boolean flag=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.copy_activity_login);
         mInputLogin= (EditText) findViewById(R.id.input_login);
-        mLogin= (Button) findViewById(R.id.btn_login);
+        mLogin= (Button) findViewById(R.id.btn_clogin);
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
 
-        mUsn=mInputLogin.getText().toString();
+       // mUsn=mInputLogin.getText().toString();
+        mUsn="15bwsb3024";
+        instance=new UseFullMethods();
+        makeJsonObjReq();
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(LoginActivity.this,CopyTabActivity.class);
-                startActivity(intent);
+                if(flag==true)
+                { Intent intent=new Intent(LoginActivity.this,CopyTabActivity.class);
+                 startActivity(intent);}
+                else
+                {
+                    Toast.makeText(LoginActivity.this,"response null",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -95,7 +106,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
-
+                 if(response!=null)
+                 {
+                     flag=true;
+                 }
                 hideProgressDialog();
             }
         }, new Response.ErrorListener() {
@@ -103,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
+                flag=false;
                 hideProgressDialog();
             }
         }) {
