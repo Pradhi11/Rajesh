@@ -45,24 +45,12 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editTextUsername"
+            android:id="@+id/input_login"
             android:drawableLeft="@drawable/user"
             android:background="@drawable/onetime"
             android:inputType="textEmailAddress"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter Password"
-            />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextPassword"
-            android:drawableLeft="@drawable/password"
-            android:background="@drawable/onetime"
-            android:inputType="textEmailAddress"/>
 
         <Button
             android:layout_width="match_parent"

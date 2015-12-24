@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.pradeep.rajtrack.utils.Const;
 import com.example.pradeep.rajtrack.utils.UseFullMethods;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     UseFullMethods instance;
     String mUsn;
     boolean flag=false;
+    String Success="Success";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
 
-       // mUsn=mInputLogin.getText().toString();
+      // mUsn=mInputLogin.getText().toString();
         mUsn="15bwsb3024";
         instance=new UseFullMethods();
         makeJsonObjReq();
@@ -101,12 +103,20 @@ public class LoginActivity extends AppCompatActivity {
 
     private void makeJsonObjReq() {
         showProgressDialog();
+
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,instance.conCat(mUsn, Const.URL_JSON_OBJECT), null,new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
-                 if(response!=null)
+                String msg=null;
+                try {
+                     msg=response.getString("message");
+                    Log.d(TAG, msg);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if(Success.equalsIgnoreCase(msg))
                  {
                      flag=true;
                  }
