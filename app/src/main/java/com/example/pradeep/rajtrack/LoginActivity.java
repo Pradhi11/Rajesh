@@ -38,6 +38,9 @@ public class LoginActivity extends AppCompatActivity {
     String mUsn;
     boolean flag=false;
     String Success="Success";
+    private static final String dataObject="feesData";
+    private static final String FEES_KEY="fees";
+    private static final String FEE_BRANCH_KEY="branch";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +56,20 @@ public class LoginActivity extends AppCompatActivity {
       // mUsn=mInputLogin.getText().toString();
         mUsn="15bwsb3024";
         instance=new UseFullMethods();
-        makeJsonObjReq();
+
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(flag==true)
+
+                makeJsonObjReq();
+               /* if(flag==true)
                 { Intent intent=new Intent(LoginActivity.this,CopyTabActivity.class);
                  startActivity(intent);}
                 else
                 {
                     Toast.makeText(LoginActivity.this,"response null",Toast.LENGTH_LONG).show();
-                }
+                }*/
             }
         });
     }
@@ -110,16 +115,30 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
                 String msg=null;
+                String fee=null;
+                String branch=null;
                 try {
                      msg=response.getString("message");
-                    Log.d(TAG, msg);
+                    JSONObject feeObject=response.getJSONObject(dataObject);
+                    fee=feeObject.getString(FEES_KEY);
+                    branch=feeObject.getString(FEE_BRANCH_KEY);
+                    Log.d(TAG, msg+" : "+fee+" : "+branch+" : ");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 if(Success.equalsIgnoreCase(msg))
                  {
+                     Intent intent=new Intent(LoginActivity.this,CopyTabActivity.class);
+                     intent.putExtra("fee",fee);
+                     intent.putExtra("branch",branch);
+                     intent.putExtra("usn",mUsn);
+                     startActivity(intent);
                      flag=true;
                  }
+                else
+                {
+                    Toast.makeText(LoginActivity.this,"response null",Toast.LENGTH_LONG).show();
+                }
                 hideProgressDialog();
             }
         }, new Response.ErrorListener() {

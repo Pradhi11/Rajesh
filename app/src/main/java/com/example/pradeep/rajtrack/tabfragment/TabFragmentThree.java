@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,11 @@ public class TabFragmentThree extends Fragment implements View.OnClickListener {
         view=inflater.inflate(R.layout.fragment_tab_fragment_three, container, false);
         btnResult= (Button) view.findViewById(R.id.resultt);
         btnResult.setOnClickListener(this);
+
+        String usn=getArguments().getString("usn");
+        String fee=getArguments().getString("fee");
+        String branch=getArguments().getString("branch");
+        Log.d("ThirdtFragment", usn + " : " + fee + " : " + branch + " : ");
         return view;
     }
 
