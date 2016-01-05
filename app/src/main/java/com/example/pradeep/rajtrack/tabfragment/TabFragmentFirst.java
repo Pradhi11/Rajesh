@@ -11,12 +11,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pradeep.rajtrack.JsonRequestActivity;
 import com.example.pradeep.rajtrack.R;
 import com.example.pradeep.rajtrack.SvaPaymentActivity;
 import com.example.pradeep.rajtrack.VolleyMainActivity;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+
+import java.math.BigDecimal;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,12 +43,20 @@ public class TabFragmentFirst extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
     private String usn="15bwsb3024";
-
+   TextView  mDisplayFee;
+    TextView mDisplayUsn;
+    TextView mDisplayBranch;
     private Button btnPay;
+    String fee;
     View view;
-
+    private static final int REQUEST_CODE_PAYMENT = 1;
+    private static final int REQUEST_CODE_FUTURE_PAYMENT = 2;
+    private static final int REQUEST_CODE_PROFILE_SHARING = 3;
     private OnFragmentInteractionListener mListener;
+    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
 
+    // note that these credentials will differ between live & sandbox environments.
+    private static final String CONFIG_CLIENT_ID = "credential from developer.paypal.com";
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -82,11 +97,18 @@ public class TabFragmentFirst extends Fragment implements View.OnClickListener {
 
         view=inflater.inflate(R.layout.fragment_tab_fragment_first, container, false);
         btnPay= (Button) view.findViewById(R.id.pay);
+        mDisplayBranch= (TextView) view.findViewById(R.id.d_branch);
+        mDisplayUsn= (TextView) view.findViewById(R.id.d_usn);
+        mDisplayFee= (TextView) view.findViewById(R.id.d_fee);
         btnPay.setOnClickListener(this);
 
         String usn=getArguments().getString("usn");
-        String fee=getArguments().getString("fee");
+         fee=getArguments().getString("fee");
         String branch=getArguments().getString("branch");
+
+        mDisplayBranch.setText(branch);
+        mDisplayFee.setText(fee);
+        mDisplayUsn.setText(usn);
         Log.d("FirstFragment", usn + " : " + fee + " : " + branch + " : ");
         return view;
     }
@@ -120,8 +142,19 @@ public class TabFragmentFirst extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         Toast.makeText(getActivity(),"MAKE change",Toast.LENGTH_SHORT).show();
-        Intent i=new Intent(getActivity(), SvaPaymentActivity.class);
-         startActivity(i);
+        PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE);
+        Intent intent = new Intent(getActivity(), PaymentActivity.class);
+
+        // send the same configuration for restart resiliency
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
+
+        startActivityForResult(intent, REQUEST_CODE_PAYMENT);
+
+
+       // Intent i=new Intent(getActivity(), SvaPaymentActivity.class);
+         //startActivity(i);
 
     }
 
@@ -139,5 +172,16 @@ public class TabFragmentFirst extends Fragment implements View.OnClickListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
+    private PayPalPayment getThingToBuy(String paymentIntent) {
+        return new PayPalPayment(new BigDecimal(fee), "USD", "Need to PAY ",paymentIntent);
+    }
+
+    private static PayPalConfiguration config = new PayPalConfiguration()
+            .environment(CONFIG_ENVIRONMENT)
+            .clientId(CONFIG_CLIENT_ID)
+                    // The following are only used in PayPalFuturePaymentActivity.
+            .merchantName("Pradeep")
+            .merchantPrivacyPolicyUri(Uri.parse("https://www.example.com/privacy"))
+            .merchantUserAgreementUri(Uri.parse("https://www.example.com/legal"));
 
 }

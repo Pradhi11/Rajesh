@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg_detail"
-    android:padding="20dp">
+    >
 
     <Button
         android:id="@+id/btnImageReq"

@@ -1,8 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.pradeep.rajtrack.tabfragment.TabFragmentFirst"
-    android:background="@drawable/bg_detail">
+    android:background="@drawable/bg_detail"
+    android:layout_centerInParent="true"
+    >
 
     <!-- TODO: Update blank fragment layout -->
     <!--<TextView
@@ -11,36 +13,36 @@
         android:text="@string/hello_blank_fragmentone"
         android:layout_gravity="center"/>-->
 
-    <android.support.v7.widget.CardView
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="#0000FF"
-        android:padding="20dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+      android:id="@+id/layout_usn" >
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/usn"
-            android:text="STUDENT USN : "/>
+            android:text="STUDENT USN : "
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/d_usn"
+
             />
 
-    </LinearLayout>
+   </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@+id/layout_usn"
+        android:id="@+id/layout_branch">
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,13 +56,15 @@
             android:id="@+id/d_branch"
             />
 
+
     </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="clip_vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/layout_branch"
+        android:id="@+id/layout_fee">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,21 +77,26 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/d_fee"
                 />
-
-        </LinearLayout>
+</LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="bottom"
-        >
+        android:layout_below="@+id/layout_fee"
+        android:orientation="horizontal">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PAY"
         android:id="@+id/pay"/>
-    </LinearLayout>
-    </android.support.v7.widget.CardView>
 
-</FrameLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:id="@+id/fee_details"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
