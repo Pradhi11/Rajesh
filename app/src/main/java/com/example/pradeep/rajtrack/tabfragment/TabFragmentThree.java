@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pradeep.rajtrack.ImageRequestActivity;
@@ -37,6 +38,7 @@ public class TabFragmentThree extends Fragment implements View.OnClickListener {
     private String mParam2;
     private String usn="15bwsb3024";
     private Button btnResult;
+    TextView mDisplayUsn;
     View view;
 
     private OnFragmentInteractionListener mListener;
@@ -81,11 +83,13 @@ public class TabFragmentThree extends Fragment implements View.OnClickListener {
 
         view=inflater.inflate(R.layout.fragment_tab_fragment_three, container, false);
         btnResult= (Button) view.findViewById(R.id.resultt);
+        mDisplayUsn= (TextView) view.findViewById(R.id.d_third_usn);
         btnResult.setOnClickListener(this);
 
         String usn=getArguments().getString("usn");
         String fee=getArguments().getString("fee");
         String branch=getArguments().getString("branch");
+        mDisplayUsn.setText(usn);
         Log.d("ThirdtFragment", usn + " : " + fee + " : " + branch + " : ");
         return view;
     }

@@ -30,12 +30,15 @@ import java.math.BigDecimal;
  * Activities that contain this fragment must implement the
  * {@link TabFragmentFirst.OnFragmentInteractionListener} interface
  * to handle interaction events.
+ * sunitha 8880355999
+ * sridhar 8147778877
+ * ravi 9916200888
  * Use the {@link TabFragmentFirst#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class TabFragmentFirst extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBE11R
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -183,5 +186,7 @@ public class TabFragmentFirst extends Fragment implements View.OnClickListener {
             .merchantName("Pradeep")
             .merchantPrivacyPolicyUri(Uri.parse("https://www.example.com/privacy"))
             .merchantUserAgreementUri(Uri.parse("https://www.example.com/legal"));
+
+
 
 }

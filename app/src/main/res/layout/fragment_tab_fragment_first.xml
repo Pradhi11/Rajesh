@@ -13,6 +13,12 @@
         android:text="@string/hello_blank_fragmentone"
         android:layout_gravity="center"/>-->
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#0000FF"
+        android:id="@+id/card_usn">
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -36,12 +42,24 @@
             />
 
    </LinearLayout>
+</android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#0000FF"
+        android:id="@+id/card_branch"
+        android:layout_below="@+id/card_usn">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/layout_usn"
+        android:layout_below="@+id/card_usn"
         android:id="@+id/layout_branch">
 
         <TextView
@@ -58,6 +76,18 @@
 
 
     </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#0000FF"
+        android:id="@+id/card_fee"
+        android:layout_below="@+id/card_branch">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,6 +109,20 @@
                 />
 </LinearLayout>
 
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#0000FF"
+        android:id="@+id/card_button"
+        android:layout_below="@+id/card_fee">
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,4 +143,5 @@
 
     </LinearLayout>
 
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
