@@ -147,7 +147,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 flag=false;
-               // makeJsonObjReq();
+                int count=0;
+                makeJsonObjReq();
+                Log.d("count",": "+count++);
                 hideProgressDialog();
             }
         }) {

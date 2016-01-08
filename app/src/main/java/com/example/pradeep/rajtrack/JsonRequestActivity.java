@@ -91,6 +91,9 @@ public class JsonRequestActivity extends Activity implements OnClickListener {
 					@Override
 					public void onErrorResponse(VolleyError error) {
 						VolleyLog.d(TAG, "Error: " + error.getMessage());
+						int count=0;
+						makeJsonObjReq();
+						Log.d("count json",": "+count++);
 						hideProgressDialog();
 					}
 				}) {

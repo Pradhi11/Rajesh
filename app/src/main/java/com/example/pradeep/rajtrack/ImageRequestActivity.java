@@ -150,6 +150,10 @@ public class ImageRequestActivity extends Activity implements AdapterView.OnItem
 			@Override
 			public void onErrorResponse(VolleyError error) {
 				VolleyLog.d(TAG, "Error: " + error.getMessage());
+				makeJsonObjReq();
+				int count=0;
+				makeJsonObjReq();
+				Log.d("count image", ": " + count++);
 				hideProgressDialog();
 			}
 		}) {
